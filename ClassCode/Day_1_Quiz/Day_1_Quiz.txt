@@ -370,7 +370,7 @@ public class NewByteSteam {
             while((c = in.read() != -1) {
                 out.write(c);
             }
-        } catch (IO Exception e) {
+        } catch (Day_2.IO Exception e) {
             System.out.println("An error has interrupted file processing")
         } finally {
             (if in != null) {
@@ -392,7 +392,7 @@ public class NewByteSteam {
             while((c = in.read() != -1) {
                 out.write(c);
             }
-        } catch (IO Exception e) {
+        } catch (Day_2.IO Exception e) {
             System.out.println("An error has interrupted file processing")
         }
     }
@@ -416,7 +416,7 @@ public class NewCharacterSteam {
             while((c = in.read() != -1) {
                 out.write(c);
             }
-        } catch (IO Exception e) {
+        } catch (Day_2.IO Exception e) {
             System.out.println("An error has interrupted file processing")
         } finally {
             (if in != null) {

@@ -1,4 +1,4 @@
-package IO;
+package Day_2.IO;
 
 public class Refugee {
     //id,Year,Country,Population,Refugees,RefPerCap
