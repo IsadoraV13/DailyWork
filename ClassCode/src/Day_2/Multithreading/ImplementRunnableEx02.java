@@ -4,7 +4,7 @@ public class ImplementRunnableEx02 implements Runnable {
     Thread threadFive;
 
     public ImplementRunnableEx02(String name) {
-        threadFive = new Thread(this, "Thread 5");
+        threadFive = new Thread(this, name);
     }
 
     @Override

@@ -4,7 +4,7 @@ public class ImplementRunnableEx03 implements Runnable {
     Thread threadSix;
 
     public ImplementRunnableEx03(String name) {
-        threadSix = new Thread(this, "Thread 6");
+        threadSix = new Thread(this, name);
         threadSix.start();
     }
 
