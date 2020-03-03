@@ -1,0 +1,563 @@
+Day 1 Quiz!
+
+Please use any and all resources at your disposal to complete this quiz. That means, the internet, the CodingNomads platform, the labs, and/or anything else. Take as much time as you need. If you finish before others please feel free to take a break, do some studying, send me any questions on Slack etc.
+
+Section 1 - Fundamentals:
+
+1) What defines "a block" of code?
+the pair of curly brackets that it is found inside of
+
+2) What is "variable scope"?
+** A variable only exists within the scope it was declared in -0 >> defines when/where a variable is available --
+
+3) What defines "variable scope"?
+** the nearest enclosing curly brackets
+
+4) What are Java's primitive data types? Please list them and briefly explain them.
+byte: 8 bits
+char: 16 bits
+intL 32 bits
+short: 16 bits
+long: 32 bits
+float: 32 bits
+double: 64 bits
+boolean: 1 bit
+
+5) What are Java's arithmetic operators? Please demonstrate all of them.
++ for addition as used in 2 + 3 == 5
+- for subtraction as used in 3 - 2 == 1
+/ for division as used in 3 / 2 == 1
+* for multiplication as used in 3 * 2 == 6
+% for modulus (i.e. the remainder after a division) as used in 8 % 3 == 2
+
+6) What are Java's relational operators? Please demonstrate all of them.
+Java's relational operators compare 2 values and returns a boolean
+> means 'greater than' as used in 3 > 2
+< means 'less than' as used in 2 < 3
+>= means 'greater than or equal to' as used in 3 >= 2
+<= means 'less than or equal' as used in 2 <= 3
+== means 'equal to' as used in 2 * 2 == 4
+!= means 'not equal to' as used in 2 * 2 != 5
+
+7) What are Java logical operators? Please demonstrate all of them?
+Java's logical operators evaluate either side of the operator as either true or false and returns a boolean
+& is 'AND' as used in true & true == true
+&& is 'short circuit AND' and will only evaluate the right side if the left side is true
+| is 'OR' as used in true | false == true
+|| is 'short circuit OR' and will only evaluate the right side if the left side is false
+^ is XOR meaning that only one side of the operator can be true but not both
+! is NOT as used in !true = false
+
+8) What is a conditional statement in Java? Please show an example.
+a conditional statement evaluates an expression as true or false and then usually executes some code or condition if
+true and some other code or condition if false.
+if(true) {
+    //do something
+} else {
+    //do something
+}
+
+9) What types of loops do we have in Java? Please demonstrate each of them.
+for loop: for every iteration in the loop, the stated code will be executed, e.g. below for i = 0, i = 1, i = 2, i = 3.
+for (int = 0; i < 4; i++) {
+    //code to execute here
+}
+
+while loop: while a condition is true, the stated code will be executed. A while loop is evaluated at the top of the loop
+meaning that if the very first iteration is evaluated as false, the code will not even execute once
+while (i < 4) {
+    //code to execute here
+}
+
+do while: 'do' something, i.e. execute the stated code while a condition is true. A do while loop is evaluated at the
+bottom of the loop meaning that at least one iteration of the code will always be executed.
+do {
+    //code to execute here
+}
+while (i < 4)
+
+>> for-each:
+
+10) What do the keywords "continue", "break", and "return" do?
+continue forces an early iteration of the loop it is in
+break will not execute the next line of code and effectively 'break out' of the nearest curly brackets if a condition in the
+current line of code is met
+return will immediately exit the current loop >> and returns to the calling method (sometimes a value must be returned)
+
+11) What is a Switch Statement? Please demonstrate.
+A switch statement is a conditional statement that can be used when there are multiple different possible scenarios
+
+**
+int coffeeShots = 3;
+switch (coffeeShots) {
+ case 1:
+    System.out.println("You have ordered one shot of coffee");
+    break;
+ case 2:
+     System.out.println("You have ordered two shots of coffee");
+     break;
+ case 3:
+     System.out.println("You have ordered three shots of coffee");
+     break;
+ default:
+     System.out.println("I'm sorry I did not catch that; please repeat your order");
+}
+
+Section 2 - Introduction to Data Structures:
+
+12) What is an Array?
+An array is a collection of variables of the same type and is of fixed size. >> simplest Java data structure
+
+13) What is the difference between the length() of an Array and the final index of an Array?
+the length of an array will always be 1 more than the final index of the array because indices start at zero, e.g.
+the length of an array of 5 elements is 5, but the indices will be: 0, 1, 2, 3, 4 - meaning the final index is 4
+
+14) How do we instantiate an Array of size 7? Please demonstrate.
+example1: for an int array: int[] newArray = new int[7];
+example2: for a String array: String[] otherArray = new String[7];
+
+15) Please write a for loop that will populate the Array you created above with the numbers two through twelve (start with 2 and increment by 2).
+for (int i = 0; i < newArray.length; i++) {
+    newArray[i] = i * 2 + 2;
+}
+
+16) Please write a for-each loop that will print each element in the Array above.
+for (int num : newArray) {
+System.out.println(num);
+}
+
+17) How do we declare a two-dimensional Array with a width of 7 and a height of 7? Please demonstrate?
+int[][] anotherArray = new int[7][7];
+
+18) Please demonstrate how to populate the 2D array above using a nest for loop?
+for (int i = 0; i < newArray.length; i++) {
+    for (int j = 0; j < newArray[i].length; j++) {
+        newArray[i][j] = (i + 1) * j;
+    }
+}
+
+19) Please demonstrate how to print each element in the 2D array above using nested for-each loop.
+for (int i = 0; i < newArray.length; i++) {
+    for (int j = 0; j < newArray[i].length; j++) {
+        System.out.println(newArray[i][j]);
+    }
+}
+
+>>
+for(int[] innerArray: newArray) {
+    for(int i : innerArray {
+        sout(i);
+    }
+}
+
+20) What is an ArrayList?
+An ArrayList implements the List interface. It is a collection of elements and is of variable size.
+
+21) What makes an ArrayList different than an Array?
+An ArrayList is of variable size whereas an Array is of fixed size
+** An array can contain objects and primitive types but an ArrayList can only contain objects
+** An array can be multi dimensional but an ArrayList can only have one dimension
+>> ArrayLists are Generic
+
+22) What are a few useful methods that are available to us when using an ArrayList?
+.add(Element e)
+.contains(Element e)
+.size()
+.indexOf(Object o)
+
+Section 3 - Object-Oriented Programming (OOP):
+
+23) What is OOP?
+Programming that is centred around code that defines and can be executed on objects
+>> a paradigm to simply and effectively model objects from our world and interact with these objects in an intuitive way
+
+24) What are the primary tenants/principles of OOP?
+Abstraction
+Encapsulation
+Inheritance
+Polymorphism
+
+25) Please explain the tenants/principles you listed in the previous question.
+Abstraction: complex problems/objects can be simplified into to only elements that are required to solve a problem
+Encapsulation: >> putting all data and methods that act on that data inside the appropriate class
+Inheritance: a child class can inherit attributes (variables and methods) of parent classes
+Polymorphism: class or methods can exist in various forms, e.g. we can overload a method of the same name, with each
+version of that method taking different parameter types, e.g. a multiplication method that can take int parameters in
+one of its forms and then taken doubles in another form. For overloading to be successful, one of the following must be
+different in each method: the number of parameters, types of parameters or sequence of parameters
+
+26) What is a constructor?
+A constructor gives the ability to create an object of a class using specific attributes (parameters) defined in it.
+If no parameters are defined by the programmer, then Java has a default constructor that takes no parameters.
+
+>> like a method but without a return type. A constructor's name must always match the name of the class. Often used
+to set up basic object requirements
+
+27) When, specifically, is a constructor invoked?
+When creating a new object of a class
+
+>> every time the new keyword is used
+
+28) How do we create a new object in Java?
+ClassName newObj = new ClassName();
+
+29) What is Object Composition? Please give a simple demo below.
+It is when an object of a class takes in an object of another class as one of its parameters, e.g. below, the class
+Coffee takes in an object of the class Milk as a parameter
+public class CoffeeCup {
+    int shots;
+    Milk milk;
+
+    public CoffeeCup(int shots, Milk milk) {
+    this.shots = shots;
+    this.milk = milk;
+    }
+}
+
+public class Milk {
+    String milkName;
+    Boolean vegan;
+
+    public Milk(String milkName, Boolean vegan) {
+    this.milkName = milkName;
+    this.vegan = vegan;
+    }
+}
+
+30) What are the access modifiers in Java? Please list them and briefly describe them.
+public: can be accessed throughout the whole program
+private: can only be accessed within the same class
+protected: can only be accessed within the same package, although sub classes of its class in other packages also have access to it
+default: can only be accessed within the same package
+
+31) What is the difference between "this" and "super"?
+this refers to a member of the current class (the one being defined), whereas as super refers to a member of a parent class
+
+32) What is an "abstract" class?
+>> a class that implements an interface but does not implement all methods defined in the interface
+classes that extend that class WILL then NEED to implement all the methods of the grandparent class
+
+>>>>>>>>>>>>>>
+public interface VehicleInterface {
+    public void start();
+    public void stop();
+    public void accelerate();
+    public void decelerate();
+}
+
+public abstract class Plane implements VehicleInterface {
+    // implement start() and stop()
+    // unable to implement accelerate() and decelerate()
+}
+
+public class FighterJet extends Plane {
+    // MUST implement accelerate() and decelerate()
+}
+
+>>>>>>>>>>>>>>
+
+33) What is the difference between a static variable and a non-static variable?
+the value of a static variable is shared across all objects of that class, whereas the value of a non-static variable
+can be different for each object
+
+34) What is the difference between a static method and a non-static method?
+a static method relates to a class whereas a non-static method relates to objects of a class
+>> static methods interact with static variables and non-static methods interact with non-static variables
+
+35) What do we need in order to be able to call a non-static method?
+an object of the class (containing the non-static method) needs to be created
+
+36) How do we call a static method that is in another class?
+otherClass.methodName();
+
+37) What does it mean to "overload" a method?
+to implement more than 1 version of the method (with the same name) but with parameters of different types, numbers or
+sequences
+
+38) What does it mean to "override" a method?
+It is where a child class implements its own version of the parent method (**with exactly the same method signature)
+
+
+Section 4 - Exception Handling:
+
+39) What is exception handling all about?
+Catching exceptions (and defining what happens if one occurs) so that the program does not terminate abruptly if an
+exception occurs
+
+40) Please demonstrate a try/catch/finally statement below.
+try {
+    4 / 0;
+} catch (ArithmeticException exc) {
+    System.out.println("An error has occurred; the denominator cannot be zero")
+} finally {
+ // do something whether an error occurs or not
+}
+
+41) How do we create a custom exception? Please demonstrate.
+**
+By extending Exception which is itself a subclass of Throwable
+>> example if method requires a return but we cannot return the value due to an exception, we can deal with it by
+throwing an exception and dealing with it elsewhere
+class CustomException extends Exception {
+
+    public CustomException(String message, int statusCode) {
+        super(message);
+    }
+
+    @Override
+    public String toString() {
+        return "CustomException{Error: please enter a non-zero value}";
+    }
+}
+
+42) What does it mean to "throw" an exception?
+It means manually triggering an exception
+
+43) What is the difference between the keywords "throw" and "throws"?
+>>throw manually triggers an exception and passes it back to the calling method, whereas throws is a keyword used in a
+method signature to indicate that that method has the potential to 'throw' an exception
+
+44) When catching multiple exceptions, why must we keep the "exception hierarchy" in mind?
+because if a specific exception is not caught first (before a generic exception), the program will terminate as it is
+the first exception to be thrown
+
+45) Can we have a "try" without a "catch"?
+No
+
+46) Can we have a "try/catch" without a "finally"?
+Yes
+
+
+Section 5 - Input/Output:
+
+47) What is a Byte Stream?
+** A stream is a method to sequentially access a file. A Byte stream is an input/output stream that automatically
+reads/writes data byte by byte
+
+48) What is a Character Stream?
+** A stream is a method to sequentially access a file. A Character is a reader/writer stream that automatically
+reads/writes data character by character (specifically for a number of human readable languages)
+
+49) What is a very quickly clue that tells us whether we're looking at a Byte Stream or a Character Stream?
+*The names; a Byte Stream will have inputStream or outputStream in the name whereas a Character Stream will have
+Reader or Writer
+
+50) What is the difference between a Buffered Byte Stream and a traditional Byte Stream?
+A Buffered Byte Stream allows us to read or write blocks of bytes at a time whereas a traditional Byte Stream only
+allows us to access one byte at a time
+
+51) What is the difference between a Buffered Character Stream and a traditional Character Stream?
+A Buffered Character Stream allows us to read or write blocks of character (a word or line) at a time whereas a
+traditional Character Stream only allows us to access one character at a time
+
+52) Please demonstrate how to create a Byte Stream and a Character Stream below. Both of these Streams should demonstrate how to read a file and print the contents to the console. (This is just a demonstration.)
+**
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class NewByteSteam {
+    public static void main(String[] args) {
+
+        FileInputStream in = null;
+        FileOutputStream out = null;
+
+        try {
+            in = new FileInputStream("/example/file/path/input.txt");
+            out = new FileInputStream("/example/file/path/output.txt");
+            int c;
+            while((c = in.read() != -1) {
+                out.write(c);
+            }
+        } catch (IO Exception e) {
+            System.out.println("An error has interrupted file processing")
+        } finally {
+            (if in != null) {
+                in.close();
+            }
+            (if in != null) {
+                in.close();
+            }
+        }
+    }
+}
+>>>>>>>>>>> try with resources
+public class NewByteSteam {
+    public static void main(String[] args) {
+
+        try { (FileInputStream in = new FileInputStream("/example/file/path/input.txt";
+        FileOutputStream out = new FileInputStream("/example/file/path/output.txt");
+            int c;
+            while((c = in.read() != -1) {
+                out.write(c);
+            }
+        } catch (IO Exception e) {
+            System.out.println("An error has interrupted file processing")
+        }
+    }
+}
+>>>>>>>>>>>>
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class NewCharacterSteam {
+    public static void main(String[] args) {
+
+        FileReader in = null;
+        FileWriter out = null;
+
+        try {
+            in = new FileReader("/example/file/path/input.txt");
+            out = new FileWriter("/example/file/path/output.txt");
+            int c;
+            while((c = in.read() != -1) {
+                out.write(c);
+            }
+        } catch (IO Exception e) {
+            System.out.println("An error has interrupted file processing")
+        } finally {
+            (if in != null) {
+                in.close();
+            }
+            (if in != null) {
+                in.close();
+            }
+        }
+    }
+}
+
+Section 6 - MultiThreading:
+
+53) What is multithreading?
+It is the creation of multiple instances of code running in parallel to maximise efficiency (concurrency)
+
+54) What are the 2 ways we can create new threads in Java?
+Extending the Thread
+Implementing the Runnable Interface
+
+55) Which method of creating a new thread do we typically prefer? Why?
+Implementing the Runnable Interface because we can only extend one class. We therefore only use this when
+we would like to change the default behaviour of the Thread class
+
+56) What is the one method you must implement when creating a new thread?
+run()
+
+57) What does the join() method do?
+*It allows the current thread to wait for another thread (on which it is called) to complete before the current
+thread continues
+
+58) What does the synchronized keyword do?
+**It is used on methods to indicate that only one thread can access a specific resource at a time
+
+
+Section 7 - Generics:
+
+59) Why do we use Generics?
+To have more flexibility when defining a new class or method so that it can take a variety of different data types, according to
+the needs of the user
+
+60) Please demonstrate a simple Generic Class definition.
+public Class GenericClass<E> {
+    private E val;
+
+    public getVal() {
+        return val;
+    }
+
+    public setVal() {
+            this.val = val;
+    }
+}
+
+
+60) Please demonstrate a simple Generic Method definition.
+>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    public static <E> void printGeneric(E val) {
+        System.out.println("the value of the object is: " + getVal());
+    }
+>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+61) What does "bounded types" mean?
+it means you can pass any type that is xxx, e.g. a subclass of Number
+
+62) Please write a simple bounded Generic Method named sum() that takes in two parameters. These parameters can be ANY type of Number, but they must be a Number. This method will return a double which is the sum of the two method parameters.
+>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    public <T extends Number> double returnSum(T a, T b) {
+        return a.doubleValue() + b.doubleValue():
+    }
+>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+62) What is an example of a Generic Class that we've already been using a bit in the prep course?
+>> ArrayList
+
+Section 8 - Enumerations:
+
+63) What is an Enumeration?
+>> A simple set (not a Java set), like a class but with pre-set values, e.g.
+
+64) When do we use Enumerations?
+>> When we have a fixed set (not a Java set) of elements such as days of the week
+
+65) Please demonstrate a simple Enumeration below.
+>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    public Enum Planets {
+        MERCURY(1, 1000 12),
+        VENUS(2, 2000, 15),
+        EARTH,
+        MARS,
+        JUPITER,
+        SATURN,
+        URANUS,
+        NEPTUNE
+
+        private int positionFromSun;
+        private int mass;
+        private int diameter;
+
+        public Planet(int positionFromSun, int mass, int diameter) {
+        this.positionFromSun = positionFromSun;
+        this.mass = mass;
+        this.diameter = diameter;
+
+        }
+
+        // all getters
+    }
+
+    Planet earth = planets.EARTH;
+    sout(earth.getMass());
+>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Hoorayyyy! You're done! 
+
+Bonus Section!
+
+Please write a method that will reverse the (int) elements inside an array. This method takes in an int[] array as an argument and reverse the elements in place. You cannot create a new array and copy elements from one array to the other, you must reverse the elements in place inside the original array. Once reversed, return the array back to the caller.
+>>>>>>>>>>>>>>>>>>>>>>>>>>>
+public static void main(String[] args) {
+        int nums [] = {78, 25, 34, 42, 577, 9};
+        nums = reverseArray(nums);
+
+        for (int i : nums) {
+            sout(i)
+        }
+}
+
+        public static int[] reverseArray(int[] nums) {
+            int memory;
+            for (int j = 0; j < array.length/2; j++) {
+            int memory = array[j];
+            array[j] = array[array.length-1-j];
+            array[array.length-1-j] = memory;
+            }
+        return nums;
+        }
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Please create a simple Rock-Paper_Scissors game that you can play on the console against the commputer. The computer must randomly choose it's play, and the user gets to manually choose their play. Best 2 out of 3 wins.
+
+
+Hooray!! You're extra extra done!
