@@ -1,11 +1,14 @@
 package Day_5;
 
 public class CustomHashMap<K, V> {
-    // this class creates the 'map' (an array of HashMapNodes)  and 'controls' the functionality of HashMapNodes
+    // this class creates a 'map' (an array of HashMapNodes) and 'controls' the functionality of HashMapNodes
     HashMapNode[] map;
+    int counter = 0;
+    final String UP = "up";
+    final String DOWN = "down";
 
     public CustomHashMap() {
-        map = new HashMapNode[5];
+        map = new HashMapNode[4];
     }
 
     public int hash(K key) {
@@ -21,6 +24,8 @@ public class CustomHashMap<K, V> {
         // check if map is empty at that index (if it is, insert Node at that index)
         if(null == map[i]) {
             map[i] = new HashMapNode(key, val);
+            counter++;
+            resize(UP);
             return;
         }
         // else (there is at least one Node); check that first node to see if the key is a duplicate (and overwrite)
@@ -44,6 +49,8 @@ public class CustomHashMap<K, V> {
         }
         // else we are at the last Node and we can add the new node at Next
         iterator.setNext(new HashMapNode(key, val));
+        counter ++;
+        resize(UP);
         return;
     }
 
@@ -81,10 +88,14 @@ public class CustomHashMap<K, V> {
         // then check if the first Node has the key we are looking for; if it does, 'cut the head off'
         if (iterator.getKey().equals(key)) { //if the head has the data
             if (iterator.getNext() == null) {// and it's the only Node (i.e. there is no Next)
-                map[i] = null;
+                map[i] = null; // cut it off
+                counter --;
+                resize(DOWN);
                 return;
             } else {
                 map[i] = iterator.getNext(); // else (there are more Nodes), set the Next node as the head (index at i)
+                counter --;
+                resize(DOWN);
                 return;
             }
         }
@@ -98,17 +109,21 @@ public class CustomHashMap<K, V> {
         if (iterator.getNext() == null) { //if next Node is null (we are at the end of the list)
             if (iterator.getNext().getKey().equals(key)) {// if the last Node contains the key
                 iterator.setNext(null); // set the last Node as null
+                counter --;
+                resize(DOWN);
                 return;
             }
             System.out.println("Key not found"); // otherwise, we are at the end and have not found the key
             return;
         }
         iterator.setNext(iterator.getNext().getNext()); // we have found the key and remove it by leapfrogging it
+        counter --;
+        resize(DOWN);
         return;
 
     }
 
-    public boolean contains (K key) {
+    public boolean contains(K key) {
         int i = hash(key);
 
         // check if map is empty at that index and return false if it is
@@ -127,5 +142,56 @@ public class CustomHashMap<K, V> {
         if (iterator == null)
             return false; // the list does not contain the said key
         return true; // we have found the key in the current Node
+    }
+
+    public void print() {
+        for(int i = 0; i < map.length; i++){
+            if(map[i] == null) {
+                continue;
+            }
+            System.out.println(map[i]);
+            HashMapNode<K, V> iterator = map[i];
+            while(iterator.getNext() != null){
+                System.out.println(iterator.getNext());
+                iterator = iterator.getNext();
+            }
+        }
+    }
+
+
+    public void resize(String direction) {
+        if(direction.equals("up") && counter > map.length * 0.7) {
+            HashMapNode[] oldMap = map;
+            map = new HashMapNode[oldMap.length * 2];
+            counter = 0;
+            for (int i = 0; i < oldMap.length; i++) {
+                HashMapNode<K, V> iterator = oldMap[i];
+                if (iterator == null) {
+                    continue;
+                }
+                put(iterator.getKey(), iterator.getVal());
+                while (iterator.getNext() != null) {
+                    put(iterator.getNext().getKey(), iterator.getNext().getVal());
+                    iterator = iterator.getNext();
+                }
+            }
+        }
+        if(direction.equals("down") && counter < map.length * 0.3) {
+                HashMapNode[] oldMap = map;
+                map = new HashMapNode[oldMap.length / 2];
+                counter = 0;
+                for (int i = 0; i < oldMap.length; i++) {
+                    HashMapNode<K, V> iterator = oldMap[i];
+                    if (iterator == null) {
+                        continue;
+                    }
+                    put(iterator.getKey(), iterator.getVal());
+                    while (iterator.getNext() != null) {
+                        put(iterator.getNext().getKey(), iterator.getNext().getVal());
+                        iterator = iterator.getNext();
+                    }
+                }
+        }
+
     }
 }
