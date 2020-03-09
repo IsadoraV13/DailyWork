@@ -26,14 +26,14 @@ public class CustomHashMap<K, V> {
         // else (there is at least one Node), create an iterator to find an empty spot
         HashMapNode<K, V> iterator = map[i];
         // but first check the first node to see if the key is a duplicate (we would simply overwrite)
-        if(iterator.getKey() == key) {
-            iterator.setVal(val);
-            return; //overwrite
+        if(iterator.getKey().equals(key)) {
+            iterator.setVal(val); //overwrite
+            return;
         }
         while(null != iterator.getNext()) { // while next is not empty, check whether key is a duplicate
-            if(iterator.getKey() == key) {
-                iterator.setVal(val);
-                return; //overwrite
+            if(iterator.getKey().equals(key)) {
+                iterator.setVal(val); //overwrite
+                return;
             } // as long as we do not find an empty spot for the Node (and for every non-empty spot, we have checked
              // whether our new key is a duplicate - to replace any old Node with a duplicate key this new Node), iterate
             iterator = iterator.getNext();
@@ -74,7 +74,7 @@ public class CustomHashMap<K, V> {
         // else (if not empty) create an iterator
         HashMapNode<K, V> iterator = map[i];
         // then check if the first Node has the key we are looking for; if it does, 'cut the head off'
-        if (iterator.getKey() == key) { //if the head has the data
+        if (iterator.getKey().equals(key)) { //if the head has the data
             if (iterator.getNext() == null) {// and it's the only Node (i.e. there is no Next)
                 map[i] = null;
                 return;
