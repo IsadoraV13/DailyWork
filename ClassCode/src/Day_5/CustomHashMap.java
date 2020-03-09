@@ -23,23 +23,28 @@ public class CustomHashMap<K, V> {
             map[i] = new HashMapNode(key, val);
             return;
         }
-        // else (there is at least one Node), create an iterator to find an empty spot
-        HashMapNode<K, V> iterator = map[i];
-        // but first check the first node to see if the key is a duplicate (we would simply overwrite)
-        if(iterator.getKey().equals(key)) {
-            iterator.setVal(val); //overwrite
+        // else (there is at least one Node); check that first node to see if the key is a duplicate (and overwrite)
+        if(map[i].getKey().equals(key)) {
+            map[i].setVal(val); //overwrite
             return;
         }
-        while(null != iterator.getNext()) { // while next is not empty, check whether key is a duplicate
-            if(iterator.getKey().equals(key)) {
-                iterator.setVal(val); //overwrite
-                return;
-            } // as long as we do not find an empty spot for the Node (and for every non-empty spot, we have checked
-             // whether our new key is a duplicate - to replace any old Node with a duplicate key this new Node), iterate
+        // else, check for more Nodes
+        // create an iterator to find an empty spot
+        HashMapNode<K, V> iterator = map[i];
+        // while next is not empty, and the current node does not contain a duplicate key
+        while(null != iterator.getNext() && !iterator.getKey().equals(key)) {
+             // iterate
             iterator = iterator.getNext();
         }
-        // if we come out of the while, it means we are at the last Node >> add the new node at Next
+        // if we come out of the while, it means either we are at the last Node (next is null) OR we have found a duplicate key
+        // check if we have found a duplicate and overwrite it
+        if(iterator.getKey().equals(key)) {
+        iterator.setVal(val); //overwrite
+        return;
+        }
+        // else we are at the last Node and we can add the new node at Next
         iterator.setNext(new HashMapNode(key, val));
+        return;
     }
 
     public V get(K key) {
@@ -85,18 +90,22 @@ public class CustomHashMap<K, V> {
         }
         // else (if the iterator does not have the key we are looking for), while the next one is not empty
         // AND does not have the key, iterate
-        while (null != iterator.getNext() && iterator.getKey() != key) {
+        while (null != iterator.getNext() && iterator.getNext().getKey() != key) {
             iterator = iterator.getNext();
         }
-        // when we come out of the while loop, we are either at the last Node (and the key is not found) or we have
-        // found the key to remove in the next Node
-        if (iterator.getNext() == null) {
-            System.out.println("Key not found");
-            return;
-        } else {
-            iterator.setNext(iterator.getNext().getNext()); // leapfrog the Node to be removed
+        // when we come out of the while loop, either we are at the last Node (and need to check if it holds the key)
+        // or we have found the key to remove in the next Node
+        if (iterator.getNext() == null) { //if next Node is null (we are at the end of the list)
+            if (iterator.getNext().getKey().equals(key)) {// if the last Node contains the key
+                iterator.setNext(null); // set the last Node as null
+                return;
+            }
+            System.out.println("Key not found"); // otherwise, we are at the end and have not found the key
             return;
         }
+        iterator.setNext(iterator.getNext().getNext()); // we have found the key and remove it by leapfrogging it
+        return;
+
     }
 
     public boolean contains (K key) {
