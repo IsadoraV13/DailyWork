@@ -1,3 +1,5 @@
+package Day_3;
+
 public class EnumExample {
     public static void main(String[] args) {
         WeeklySchedule scheduleToday = WeeklySchedule.WED;

@@ -1,3 +1,5 @@
+package Day_3;
+
 public enum WeeklySchedule {
     MON("HIIT", "rest"),
     TUE("sleep","strength"),
