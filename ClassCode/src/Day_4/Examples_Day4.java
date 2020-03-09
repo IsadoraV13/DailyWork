@@ -79,7 +79,7 @@ public class Examples_Day4 {
         NonStaticPredicateTest nonStaticObj = new NonStaticPredicateTest();
         Predicate<Integer> newObj = nonStaticObj::isThisAlsoTrue;
         boolean thisOtherResult = newObj.test(3);
-        System.out.println("Result 8: " + thisOtherResult); // should be false
+        System.out.println("Result 9: " + thisOtherResult); // should be false
 
     }
 }
